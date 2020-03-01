@@ -16,7 +16,7 @@ public protocol ViewWidget: Widget, Hashable {
 extension BuildableWidget where Self: ViewWidget {
     public func build() -> Widget { return self }
     
-    public func controller() -> WidgetControllerInterface {
+    public func controller() -> WidgetController {
         return typeSafeController()
     }
     

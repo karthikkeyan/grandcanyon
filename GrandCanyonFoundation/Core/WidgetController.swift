@@ -9,53 +9,85 @@
 import UIKit
 
 // MARK: WidgetController
-public protocol WidgetControllerInterface: class {
-    var parent: WidgetControllerInterface? { get }
+public protocol WidgetController: class {
+    var parent: WidgetController? { get set }
+    var child: WidgetController? { get set }
     var widgetAsHashable: String { get }
     
-    func viewForMount(parent: WidgetControllerInterface?) -> UIView
-    func viewForChildWidget(_ childWidget: Widget) -> UIView?
+    func viewForMount(parent: WidgetController?) -> UIView
+    func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView?
     func build() -> Widget
     func willMount()
     func didMount()
-    func willUnMount()
-    func didUnMount()
 }
 
-extension WidgetControllerInterface {
+extension WidgetController {
     public func willMount() { }
     public func didMount() { }
-    public func willUnMount() { }
-    public func didUnMount() { }
 }
 
-// MARK: WidgetController
-public class WidgetController<W: Widget>: WidgetControllerInterface {
+// MARK: PureWidgetController
+public class PureWidgetController<W: Widget>: WidgetController {
+    // WidgetController Properties
+    public weak var parent: WidgetController?
+    public var child: WidgetController?
+    
+    // Public Properties
     public private(set) var widget: W
-    public weak var parent: WidgetControllerInterface?
     public var widgetAsHashable: String { return widget.asHashable }
     
-    private var child: WidgetControllerInterface?
-    private lazy var viewProvider: ViewProvider<W, UIView> = ViewProvider<W, UIView>(controller: self)
+    // Private Properties
     private var view: UIView?
+    private lazy var viewProvider: ViewProvider<W, UIView> = ViewProvider<W, UIView>(controller: self)
 
     public init(widget: W) {
         self.widget = widget
     }
-    
-    public func viewForMount(parent: WidgetControllerInterface?) -> UIView {
+
+    // MARK: Public Methods
+    public func viewForMount(parent: WidgetController?) -> UIView {
         if let view = self.view {
             return view
         }
         
         self.parent = parent
         
-        let rootView = viewProvider.view(for: widget)
+        willMount()
+        defer { didMount() }
+        
+        let rootView: UIView
+        if widget.kind == .view {
+            rootView = viewProvider.view(for: widget)
+        } else {
+            var nextWidget: Widget = widget.build()
+            var nextParentController: WidgetController = self
+            var nextChildController = nextWidget.controller()
+            repeat {
+                nextChildController.parent = nextParentController
+                nextParentController.child = nextChildController
+                
+                let previousHash = nextWidget.asHashable
+                nextWidget = nextWidget.build()
+                if previousHash != nextWidget.asHashable {
+                    nextParentController = nextChildController
+                    nextWidget = nextWidget.build()
+                    nextChildController = nextWidget.controller()
+                    
+                    // Debugging purpose condition
+                    if nextWidget.kind != .view {
+                        assert(false, "Infinite loop")
+                    }
+                }
+            } while nextWidget.kind != .view
+            
+            rootView = nextChildController.viewForMount(parent: nextParentController)
+        }
+        
         view = rootView
         return rootView
     }
-    
-    public func viewForChildWidget(_ childWidget: Widget) -> UIView? {
+
+    public func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView? {
         if let childController = child, childWidget.asHashable == childController.widgetAsHashable {
             return childController.viewForMount(parent: self)
         }
@@ -65,46 +97,67 @@ public class WidgetController<W: Widget>: WidgetControllerInterface {
         child = childController
         return childView
     }
-    
+
     public func build() -> Widget {
         return widget.build()
     }
 }
 
 // MARK: ViewWidgetController
-public class ViewWidgetController<W: ViewWidget>: WidgetControllerInterface {
+public class ViewWidgetController<W: ViewWidget>: WidgetController {
+    // WidgetController Properties
+    public weak var parent: WidgetController?
+    public var child: WidgetController?
+    
+    // Pubic Properties
     public private(set) var widget: W
-    public weak var parent: WidgetControllerInterface?
     public var widgetAsHashable: String { return widget.asHashable }
     
-    private var children: [AnyHashable: WidgetControllerInterface]?
+    // Private Properties
     private lazy var viewProvider: ViewProvider<W, W.View> = widget.viewProvider(controller: self)
-
+    private var children: [AnyHashable: WidgetController]?
+    
     public init(widget: W) {
         self.widget = widget
     }
-    
-    public func viewForChildWidget(_ childWidget: Widget) -> UIView? {
-        if let childController = children?[childWidget.asHashable] {
+
+    // MARK: Public Methods
+    public func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView? {
+        let childrenKey = key(for: childWidget, at: index)
+        if let childController = children?[childrenKey] {
             return childController.viewForMount(parent: self)
         }
-        
+
         if children == nil {
             children = [:]
         }
-        
+
         let childController = childWidget.controller()
         let childView = childController.viewForMount(parent: self)
-        children?[childWidget.asHashable] = childController
+        children?[childrenKey] = childController
         return childView
     }
 
-    public func viewForMount(parent: WidgetControllerInterface?) -> UIView {
+    public func viewForMount(parent: WidgetController?) -> UIView {
         self.parent = parent
+        
+        willMount()
+        defer { didMount() }
+        
         return viewProvider.view(for: widget)
     }
-    
+
     public func build() -> Widget {
         return widget.build()
+    }
+    
+    // MARK: Private Methods
+    private func key(for widget: Widget, at index: Int) -> String {
+        let keyString = (widget.asHashable + "\(index)")
+        guard let keyData = keyString.data(using: .utf8) else {
+            assert(false, "Fail to create key for Widget: \(widget) at: \(index)")
+            return keyString
+        }
+        return keyData.base64EncodedString()
     }
 }

@@ -34,6 +34,23 @@
 		FE7DB52323FB74E800FA4331 /* PureWidget.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE7DB51E23FB52A300FA4331 /* PureWidget.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE7DB52423FB74E800FA4331 /* WidgetController.swift in Headers */ = {isa = PBXBuildFile; fileRef = FEAFE67D23F7977B001B491E /* WidgetController.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE7DB52623FB908A00FA4331 /* Align.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7DB52523FB908A00FA4331 /* Align.swift */; };
+		FE861843240B0B8B00ABF516 /* ShadowContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861842240B0B8B00ABF516 /* ShadowContainer.swift */; };
+		FE86184B240B11D400ABF516 /* CoreGraphic+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86184A240B11D400ABF516 /* CoreGraphic+Utils.swift */; };
+		FE86184C240B12B700ABF516 /* CoreGraphic+Utils.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE86184A240B11D400ABF516 /* CoreGraphic+Utils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE86184D240B12B700ABF516 /* Align.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE7DB52523FB908A00FA4331 /* Align.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE86184E240B12B700ABF516 /* ShadowContainer.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE861842240B0B8B00ABF516 /* ShadowContainer.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE861850240B179F00ABF516 /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86184F240B179F00ABF516 /* Units.swift */; };
+		FE861851240B17CB00ABF516 /* Units.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE86184F240B179F00ABF516 /* Units.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE861853240B1A1D00ABF516 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861852240B1A1D00ABF516 /* Style.swift */; };
+		FE861855240B1A3D00ABF516 /* Journey.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861854240B1A3D00ABF516 /* Journey.swift */; };
+		FE861857240B1ABD00ABF516 /* Journey+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861856240B1ABD00ABF516 /* Journey+Mock.swift */; };
+		FE861859240B1FA200ABF516 /* UIView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861858240B1FA200ABF516 /* UIView+Utils.swift */; };
+		FE86185B240B21A200ABF516 /* VerticalStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86185A240B21A200ABF516 /* VerticalStack.swift */; };
+		FE86185C240B21E900ABF516 /* UIView+Utils.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE861858240B1FA200ABF516 /* UIView+Utils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE86185D240B21E900ABF516 /* VerticalStack.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE86185A240B21A200ABF516 /* VerticalStack.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE86185F240B329100ABF516 /* PropertyWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE86185E240B329100ABF516 /* PropertyWrappers.swift */; };
+		FE861860240B32BF00ABF516 /* PropertyWrappers.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE86185E240B329100ABF516 /* PropertyWrappers.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE861862240B346600ABF516 /* Widget+Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE861861240B346600ABF516 /* Widget+Internal.swift */; };
 		FEAFE67E23F7977B001B491E /* WidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFE67D23F7977B001B491E /* WidgetController.swift */; };
 		FEAFE68023F7C691001B491E /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEAFE67F23F7C691001B491E /* Table.swift */; };
 		FEAFE68123F7C6C7001B491E /* Table.swift in Headers */ = {isa = PBXBuildFile; fileRef = FEAFE67F23F7C691001B491E /* Table.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,10 +135,19 @@
 		FE59A44B23F62EBD0016BDDB /* GrandCanyonUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrandCanyonUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE59A44F23F62EBD0016BDDB /* GrandCanyonUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandCanyonUITests.swift; sourceTree = "<group>"; };
 		FE59A45123F62EBD0016BDDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE59A45F23F62F440016BDDB /* ScratchPad.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ScratchPad.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FE7DB51E23FB52A300FA4331 /* PureWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureWidget.swift; sourceTree = "<group>"; };
 		FE7DB52023FB52BB00FA4331 /* ViewWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWidget.swift; sourceTree = "<group>"; };
 		FE7DB52523FB908A00FA4331 /* Align.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Align.swift; sourceTree = "<group>"; };
+		FE861842240B0B8B00ABF516 /* ShadowContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowContainer.swift; sourceTree = "<group>"; };
+		FE86184A240B11D400ABF516 /* CoreGraphic+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreGraphic+Utils.swift"; sourceTree = "<group>"; };
+		FE86184F240B179F00ABF516 /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
+		FE861852240B1A1D00ABF516 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
+		FE861854240B1A3D00ABF516 /* Journey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journey.swift; sourceTree = "<group>"; };
+		FE861856240B1ABD00ABF516 /* Journey+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Journey+Mock.swift"; sourceTree = "<group>"; };
+		FE861858240B1FA200ABF516 /* UIView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Utils.swift"; sourceTree = "<group>"; };
+		FE86185A240B21A200ABF516 /* VerticalStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalStack.swift; sourceTree = "<group>"; };
+		FE86185E240B329100ABF516 /* PropertyWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrappers.swift; sourceTree = "<group>"; };
+		FE861861240B346600ABF516 /* Widget+Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widget+Internal.swift"; sourceTree = "<group>"; };
 		FEAFE67D23F7977B001B491E /* WidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetController.swift; sourceTree = "<group>"; };
 		FEAFE67F23F7C691001B491E /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		FEAFE68223F7C6E8001B491E /* VerticalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalList.swift; sourceTree = "<group>"; };
@@ -172,6 +198,7 @@
 		FE1BA6F923F63AF3002B2B74 /* GrandCanyonFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				FE861849240B11B800ABF516 /* Utils */,
 				FE49C34723F74DDD004A5E6B /* Core */,
 				FE2F17D623F63FE3000A6757 /* ViewWidgets */,
 				FE1BA6FA23F63AF3002B2B74 /* GrandCanyonFoundation.h */,
@@ -204,6 +231,8 @@
 				FE1BA71823F63B8F002B2B74 /* Text.swift */,
 				FEAFE68223F7C6E8001B491E /* VerticalList.swift */,
 				FE7DB52523FB908A00FA4331 /* Align.swift */,
+				FE861842240B0B8B00ABF516 /* ShadowContainer.swift */,
+				FE86185A240B21A200ABF516 /* VerticalStack.swift */,
 			);
 			path = ViewWidgets;
 			sourceTree = "<group>";
@@ -211,12 +240,14 @@
 		FE49C34723F74DDD004A5E6B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FE861861240B346600ABF516 /* Widget+Internal.swift */,
 				FE1BA71623F63B50002B2B74 /* Widget.swift */,
 				FE7DB52023FB52BB00FA4331 /* ViewWidget.swift */,
 				FE7DB51E23FB52A300FA4331 /* PureWidget.swift */,
 				FE1BA71D23F63BE0002B2B74 /* WidgetRenderingEngine.swift */,
 				FE49C34823F75040004A5E6B /* ViewProvider.swift */,
 				FEAFE67D23F7977B001B491E /* WidgetController.swift */,
+				FE86185E240B329100ABF516 /* PropertyWrappers.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -224,7 +255,6 @@
 		FE59A42123F62EBC0016BDDB = {
 			isa = PBXGroup;
 			children = (
-				FE59A45F23F62F440016BDDB /* ScratchPad.playground */,
 				FE59A42C23F62EBC0016BDDB /* GrandCanyon */,
 				FE59A44323F62EBD0016BDDB /* GrandCanyonTests */,
 				FE59A44E23F62EBD0016BDDB /* GrandCanyonUITests */,
@@ -252,6 +282,9 @@
 			children = (
 				FE59A42D23F62EBC0016BDDB /* AppDelegate.swift */,
 				FE59A43123F62EBC0016BDDB /* ViewController.swift */,
+				FE861852240B1A1D00ABF516 /* Style.swift */,
+				FE861854240B1A3D00ABF516 /* Journey.swift */,
+				FE861856240B1ABD00ABF516 /* Journey+Mock.swift */,
 				FE59A43323F62EBC0016BDDB /* Main.storyboard */,
 				FE59A43623F62EBD0016BDDB /* Assets.xcassets */,
 				FE59A43823F62EBD0016BDDB /* LaunchScreen.storyboard */,
@@ -278,6 +311,16 @@
 			path = GrandCanyonUITests;
 			sourceTree = "<group>";
 		};
+		FE861849240B11B800ABF516 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FE86184A240B11D400ABF516 /* CoreGraphic+Utils.swift */,
+				FE86184F240B179F00ABF516 /* Units.swift */,
+				FE861858240B1FA200ABF516 /* UIView+Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -295,6 +338,13 @@
 				FE7DB52223FB74E800FA4331 /* ViewWidget.swift in Headers */,
 				FE7DB52323FB74E800FA4331 /* PureWidget.swift in Headers */,
 				FE7DB52423FB74E800FA4331 /* WidgetController.swift in Headers */,
+				FE86184C240B12B700ABF516 /* CoreGraphic+Utils.swift in Headers */,
+				FE86184D240B12B700ABF516 /* Align.swift in Headers */,
+				FE86184E240B12B700ABF516 /* ShadowContainer.swift in Headers */,
+				FE861851240B17CB00ABF516 /* Units.swift in Headers */,
+				FE86185C240B21E900ABF516 /* UIView+Utils.swift in Headers */,
+				FE86185D240B21E900ABF516 /* VerticalStack.swift in Headers */,
+				FE861860240B32BF00ABF516 /* PropertyWrappers.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,13 +543,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE1BA71923F63B8F002B2B74 /* Text.swift in Sources */,
+				FE861850240B179F00ABF516 /* Units.swift in Sources */,
+				FE861859240B1FA200ABF516 /* UIView+Utils.swift in Sources */,
 				FE1BA71E23F63BE0002B2B74 /* WidgetRenderingEngine.swift in Sources */,
 				FE7DB52123FB52BB00FA4331 /* ViewWidget.swift in Sources */,
 				FE49C34923F75040004A5E6B /* ViewProvider.swift in Sources */,
+				FE861862240B346600ABF516 /* Widget+Internal.swift in Sources */,
 				FE7DB51F23FB52A300FA4331 /* PureWidget.swift in Sources */,
 				FE1BA71723F63B50002B2B74 /* Widget.swift in Sources */,
+				FE861843240B0B8B00ABF516 /* ShadowContainer.swift in Sources */,
 				FEAFE67E23F7977B001B491E /* WidgetController.swift in Sources */,
+				FE86185F240B329100ABF516 /* PropertyWrappers.swift in Sources */,
 				FEAFE68323F7C6E8001B491E /* VerticalList.swift in Sources */,
+				FE86185B240B21A200ABF516 /* VerticalStack.swift in Sources */,
+				FE86184B240B11D400ABF516 /* CoreGraphic+Utils.swift in Sources */,
 				FE7DB52623FB908A00FA4331 /* Align.swift in Sources */,
 				FEAFE68023F7C691001B491E /* Table.swift in Sources */,
 			);
@@ -517,7 +574,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE861855240B1A3D00ABF516 /* Journey.swift in Sources */,
 				FE59A43223F62EBC0016BDDB /* ViewController.swift in Sources */,
+				FE861857240B1ABD00ABF516 /* Journey+Mock.swift in Sources */,
+				FE861853240B1A1D00ABF516 /* Style.swift in Sources */,
 				FE59A42E23F62EBC0016BDDB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

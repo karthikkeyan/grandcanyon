@@ -27,57 +27,14 @@ extension HashableWidget where Self: Equatable {
 
 public protocol BuildableWidget {
     func build() -> Widget
-    func controller() -> WidgetControllerInterface
+    func controller() -> WidgetController
 }
 
 extension BuildableWidget where Self: Widget {
-    public func controller() -> WidgetControllerInterface {
-        return WidgetController(widget: self)
+    public func controller() -> WidgetController {
+        return PureWidgetController(widget: self)
     }
 }
 
 // MARK: Widget
-public protocol Widget: HashableWidget, BuildableWidget { }
-
-// MARK: Widget: Helper Methods
-extension Widget {
-    var asWidgetRef: WidgetRef {
-        return WidgetRef(wrappedValue: self)
-    }
-}
-
-// MARK: WidgetRef
-@propertyWrapper
-public struct WidgetRef: Hashable {
-    public var wrappedValue: Widget
-
-    public init(wrappedValue: Widget) {
-        self.wrappedValue = wrappedValue
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(wrappedValue.asHashable)
-    }
-
-    public static func ==(lhs: WidgetRef, rhs: WidgetRef) -> Bool {
-        return lhs.wrappedValue.asHashable == rhs.wrappedValue.asHashable
-    }
-}
-
-// MARK: WidgetRef
-@propertyWrapper
-public struct WidgetCollectionRef: Hashable {
-    public var wrappedValue: [Widget]
-
-    public init(wrappedValue: [Widget]) {
-        self.wrappedValue = wrappedValue
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        wrappedValue.forEach { hasher.combine($0.asHashable) }
-    }
-
-    public static func ==(lhs: WidgetCollectionRef, rhs: WidgetCollectionRef) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
+public protocol Widget: HashableWidget, BuildableWidget, WidgetTypeProvider { }

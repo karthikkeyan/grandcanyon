@@ -91,11 +91,3 @@ import UIKit
 //}
 //
 //
-extension UIView {
-    public func addConstraintsTo(childView: UIView) {
-        childView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        childView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        childView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        childView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-}

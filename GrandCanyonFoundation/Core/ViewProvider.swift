@@ -8,15 +8,18 @@
 
 import UIKit
 
-public class ViewProvider<W: Widget, V: UIView> {
-    private weak var controller: WidgetControllerInterface?
+open class ViewProvider<W: Widget, V: UIView> {
+    private weak var controller: WidgetController?
     
-    public init(controller: WidgetControllerInterface) {
+    open var shouldReuse: Bool = true
+    
+    public init(controller: WidgetController) {
         self.controller = controller
     }
     
-    public var children: [Widget]? {
+    open var children: [Widget]? {
         guard let controller = self.controller else {
+            assert(false, "Controller reference deallocated, could be thread-safe issue.")
             return nil
         }
         
@@ -24,10 +27,11 @@ public class ViewProvider<W: Widget, V: UIView> {
         return controller.widgetAsHashable == built.asHashable ? nil : [built]
     }
     
-    public func view(for widget: W) -> V {
+    open func view(for widget: W) -> V {
         let parentView = V()
+        parentView.directionalLayoutMargins = NSDirectionalEdgeInsets(insets: .zero)
         
-        if let child = children?.first, let childView = controller?.viewForChildWidget(child) {
+        if let child = children?.first, let childView = controller?.viewForChildWidget(child, at: 0) {
             childView.translatesAutoresizingMaskIntoConstraints = false
             parentView.addSubview(childView)
             parentView.addConstraintsTo(childView: childView)
@@ -39,7 +43,7 @@ public class ViewProvider<W: Widget, V: UIView> {
     public func update(view: V, using widget: W) { }
 }
 
-public class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> {
+open class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> {
     public weak var controller: ViewWidgetController<W>?
     
     public init(controller: ViewWidgetController<W>) {
@@ -47,4 +51,11 @@ public class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> 
         
         super.init(controller: controller)
     }
+    
+    override open func view(for widget: W) -> V {
+        assert(false, "ViewProvider: \(self) didn't override view(for:)")
+        return super.view(for: widget)
+    }
+    
+    override open func update(view: V, using widget: W) { }
 }

@@ -15,7 +15,7 @@ public struct Text: ViewWidget {
     public let alignment: NSTextAlignment
     
     public init(text: String?,
-                font: UIFont = .systemFont(ofSize: 12),
+                font: UIFont = .systemFont(ofSize: 14, weight: .regular),
                 color: UIColor = .black,
                 alignment: NSTextAlignment = .left) {
         self.text = text
@@ -36,6 +36,7 @@ class TextViewProvider: TypeSafeViewProvider<Text, UILabel> {
         label.textColor = widget.color
         label.textAlignment = widget.alignment
         label.text = widget.text
+        label.numberOfLines = 0
         return label
     }
 
