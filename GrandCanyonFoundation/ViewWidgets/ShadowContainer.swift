@@ -8,14 +8,27 @@
 
 import UIKit
 
+public struct ShadowConatinerBuilder: Hashable {
+    public var shadowColor: UIColor = .lightGray
+    public var opacity: Float = 0.2
+    public var offset: CGSize = CGSize(width: 0, height: .halfUnit)
+    public var radius: CGFloat = .singleUnit
+    public var blur: CGFloat = .quaterUnit
+    public var backgroundColor: UIColor = .white
+}
+
 public struct ShadowContainer: ViewWidget {
-    let color: UIColor
-    let opacity: CGFloat
-    let offset: CGSize
-    let radius: CGFloat
-    let blur: CGFloat
-    @WidgetRef var child: Widget
+    @WidgetRef public var child: Widget
     
+    fileprivate let builder: ShadowConatinerBuilder
+    
+    public init(child: Widget, build: ((inout ShadowConatinerBuilder) -> Void)? = nil) {
+        self.child = child
+        var builder = ShadowConatinerBuilder()
+        build?(&builder)
+        self.builder = builder
+    }
+
     public func viewProvider(controller: ViewWidgetController<ShadowContainer>) -> TypeSafeViewProvider<ShadowContainer, UIView> {
         return ShadowContainerViewProvider(controller: controller)
     }
@@ -29,7 +42,8 @@ class ShadowContainerViewProvider: TypeSafeViewProvider<ShadowContainer, UIView>
         override func layoutSubviews() {
             super.layoutSubviews()
             
-            let path = UIBezierPath(roundedRect: frame, cornerRadius: controller?.widget.radius ?? 0)
+            let path = UIBezierPath(roundedRect: bounds,
+                                    cornerRadius: controller?.widget.builder.radius ?? 0)
             layer.shadowPath = path.cgPath
         }
     }
@@ -45,16 +59,20 @@ class ShadowContainerViewProvider: TypeSafeViewProvider<ShadowContainer, UIView>
     
     override func view(for widget: ShadowContainer) -> UIView {
         let container = ContainerView(frame: .zero)
+        container.backgroundColor = widget.builder.backgroundColor
         container.controller = controller
         container.clipsToBounds = false
+        container.directionalLayoutMargins = .zero
         
         if let child = self.children?.first, let subview = controller?.viewForChildWidget(child, at: 0) {
+            subview.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview(subview)
+            container.addConstraintsTo(childView: subview)
         }
         
-        applyShadow()
-        
         self.container = container
+        
+        applyShadow()
         return container
     }
 
@@ -67,10 +85,10 @@ class ShadowContainerViewProvider: TypeSafeViewProvider<ShadowContainer, UIView>
             return
         }
         
-        container.layer.cornerRadius = controller.widget.radius
-        container.layer.shadowColor = controller.widget.color.cgColor
-        container.layer.shadowOpacity = Float(controller.widget.opacity)
-        container.layer.shadowRadius = controller.widget.blur
-        container.layer.shadowOffset = controller.widget.offset
+        container.layer.cornerRadius = controller.widget.builder.radius
+        container.layer.shadowColor = controller.widget.builder.shadowColor.cgColor
+        container.layer.shadowOpacity = Float(controller.widget.builder.opacity)
+        container.layer.shadowRadius = controller.widget.builder.blur
+        container.layer.shadowOffset = controller.widget.builder.offset
     }
 }

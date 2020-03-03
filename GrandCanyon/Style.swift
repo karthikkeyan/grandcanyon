@@ -32,10 +32,10 @@ extension UIColor {
     }
     
     static var subtitle: UIColor {
-        return UIColor(red: 0.369, green: 0.416, blue: 0.459, alpha: 1)
+        return UIColor(red: 0.36, green: 0.36, blue: 0.36, alpha: 1)
     }
     
     static var body: UIColor {
-        return UIColor(red: 0.31, green: 0.31, blue: 0.31, alpha: 1)
+        return UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
     }
 }

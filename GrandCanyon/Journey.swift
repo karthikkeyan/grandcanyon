@@ -7,12 +7,13 @@
 //
 
 import GrandCanyonFoundation
+import UIKit
 
 struct JourneyDetails: PureWidget {
     let stepGroups: [StepGroup]
     
     func build() -> Widget {
-        return VerticalList(spacing: .tripleUnit, children: stepGroups)
+        return VerticalList(children: stepGroups)
     }
 }
 
@@ -30,7 +31,9 @@ struct StepGroup: PureWidget {
         }
         
         children.append(contentsOf: steps)
-        return VerticalStack(spacing: .doubleUnit, children: children)
+        let list = VerticalStack(spacing: .tripleUnit, children: children)
+        let insets = Insets(insets: UIEdgeInsets(horizontal: .doubleUnit, vertical: .tripleUnit), child: list)
+        return ShadowContainer(child: insets)
     }
 }
 
@@ -40,11 +43,12 @@ struct Step: PureWidget {
     let isCompleted: Bool
     
     func build() -> Widget {
-        return TitleSubtitle(title: Text(text: title, font: .itemTitle, color: .themeBlue),
-                             subtitle: Text(text: title, color: .subtitle))
+        let sizedImage = Image(name: IconNames.unchecked)
+        let text = TitleSubtitle(title: Text(text: title, font: .itemTitle, color: .themeBlue),
+                                 subtitle: Text(text: title, color: .subtitle))
+        return HorizontalStack(distribution: .equalSpacing, alignment: .center, spacing: .singleUnit, children: [text, sizedImage])
     }
 }
-
 
 struct TitleSubtitle: PureWidget {
     let title: Text

@@ -9,12 +9,15 @@
 import UIKit
 
 extension UIView {
-    public func addConstraintsTo(childView: UIView) {
-        NSLayoutConstraint.activate([
+    @discardableResult
+    public func addConstraintsTo(childView: UIView) -> [NSLayoutConstraint] {
+        let constraints = [
             childView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             childView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             childView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             childView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
-        ])
+        ]
+        NSLayoutConstraint.activate(constraints)
+        return constraints
     }
 }

@@ -10,11 +10,9 @@ import UIKit
 
 // MARK: VerticalList
 public struct VerticalList: ViewWidget {
-    let spacing: CGFloat
     @WidgetCollectionRef var children: [Widget]
     
-    public init(spacing: CGFloat = 0, children: [Widget]) {
-        self.spacing = spacing
+    public init(children: [Widget]) {
         self.children = children
     }
     

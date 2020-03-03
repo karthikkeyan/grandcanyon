@@ -40,7 +40,7 @@ open class ViewProvider<W: Widget, V: UIView> {
         return parentView
     }
     
-    public func update(view: V, using widget: W) { }
+    open func update(view: V, using widget: W) { }
 }
 
 open class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> {

@@ -9,6 +9,7 @@
 import UIKit
 
 extension CGFloat {
+    public static let quaterUnit: CGFloat = 4
     public static let halfUnit: CGFloat = 4
     public static let singleUnit: CGFloat = 8
     public static let doubleUnit: CGFloat = 16
