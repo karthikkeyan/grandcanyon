@@ -16,6 +16,8 @@
 		FE1898CE240E48D5004D0092 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898CD240E48D5004D0092 /* Image.swift */; };
 		FE1898CF240E4A05004D0092 /* Image.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE1898CD240E48D5004D0092 /* Image.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE1898D4240E55EA004D0092 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898D3240E55EA004D0092 /* IconNames.swift */; };
+		FE1898D6240E59AF004D0092 /* TitleSubtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898D5240E59AF004D0092 /* TitleSubtitle.swift */; };
+		FE1898D7240E59ED004D0092 /* TitleSubtitle.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE1898D5240E59AF004D0092 /* TitleSubtitle.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		FE1BA70123F63AF4002B2B74 /* GrandCanyonFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE1BA6F823F63AF3002B2B74 /* GrandCanyonFoundation.framework */; };
 		FE1BA70823F63AF4002B2B74 /* GrandCanyonFoundationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1BA70723F63AF4002B2B74 /* GrandCanyonFoundationTests.swift */; };
 		FE1BA70A23F63AF4002B2B74 /* GrandCanyonFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = FE1BA6FA23F63AF3002B2B74 /* GrandCanyonFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -121,6 +123,7 @@
 		FE1898CA240E46EB004D0092 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		FE1898CD240E48D5004D0092 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		FE1898D3240E55EA004D0092 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
+		FE1898D5240E59AF004D0092 /* TitleSubtitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitle.swift; sourceTree = "<group>"; };
 		FE1BA6F823F63AF3002B2B74 /* GrandCanyonFoundation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GrandCanyonFoundation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE1BA6FA23F63AF3002B2B74 /* GrandCanyonFoundation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GrandCanyonFoundation.h; sourceTree = "<group>"; };
 		FE1BA6FB23F63AF3002B2B74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				FE1BA71823F63B8F002B2B74 /* Text.swift */,
+				FE1898D5240E59AF004D0092 /* TitleSubtitle.swift */,
 				FE1898CA240E46EB004D0092 /* Stack.swift */,
 				FEAFE68223F7C6E8001B491E /* VerticalList.swift */,
 				FE7DB52523FB908A00FA4331 /* Align.swift */,
@@ -358,6 +362,7 @@
 				FE1898C9240E4332004D0092 /* Insets.swift in Headers */,
 				FE1898CC240E4709004D0092 /* Stack.swift in Headers */,
 				FE1898CF240E4A05004D0092 /* Image.swift in Headers */,
+				FE1898D7240E59ED004D0092 /* TitleSubtitle.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +564,7 @@
 				FE861850240B179F00ABF516 /* Units.swift in Sources */,
 				FE861859240B1FA200ABF516 /* UIView+Utils.swift in Sources */,
 				FE1898C5240E3FF6004D0092 /* Insets.swift in Sources */,
+				FE1898D6240E59AF004D0092 /* TitleSubtitle.swift in Sources */,
 				FE1898C7240E4070004D0092 /* UIKit+Utils.swift in Sources */,
 				FE1BA71E23F63BE0002B2B74 /* WidgetRenderingEngine.swift in Sources */,
 				FE7DB52123FB52BB00FA4331 /* ViewWidget.swift in Sources */,

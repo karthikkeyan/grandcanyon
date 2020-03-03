@@ -24,12 +24,15 @@ struct StepGroup: PureWidget {
     
     func build() -> Widget {
         var children: [Widget] = []
+
         if let subtitle = self.subtitle {
-            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading), subtitle: Text(text: subtitle, color: .subtitle)))
+            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading),
+                                          subtitle: Text(text: subtitle, color: .subtitle)))
         } else {
-            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading), subtitle: nil))
+            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading),
+                                          subtitle: nil))
         }
-        
+
         children.append(contentsOf: steps)
         let list = VerticalStack(spacing: .tripleUnit, children: children)
         let insets = Insets(insets: UIEdgeInsets(horizontal: .doubleUnit, vertical: .tripleUnit), child: list)
@@ -41,7 +44,7 @@ struct Step: PureWidget {
     let title: String
     let type: String?
     let isCompleted: Bool
-    
+
     func build() -> Widget {
         let sizedImage = Image(name: IconNames.unchecked)
         let text = TitleSubtitle(title: Text(text: title, font: .itemTitle, color: .themeBlue),
@@ -50,15 +53,14 @@ struct Step: PureWidget {
     }
 }
 
-struct TitleSubtitle: PureWidget {
-    let title: Text
-    let subtitle: Text?
-    
-    func build() -> Widget {
-        if let subtitle = self.subtitle {
-            return VerticalStack(spacing: .halfUnit, children: [ title, subtitle ])
-        } else {
-            return VerticalStack(spacing: .halfUnit, children: [ title ])
-        }
-    }
-}
+/**
+ Total Number of Lines:
+ ======================
+ Without Line Formatting: 10
+ */
+
+/**
+ Total Number of Lines:
+ ======================
+ With Line Formatting: 13
+ */
