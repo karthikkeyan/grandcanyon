@@ -9,19 +9,22 @@
 import Foundation
 
 public struct TitleSubtitle: PureWidget {
-    let title: Text
-    let subtitle: Text?
+    private let title: Text
+    private let subtitle: Text?
     
     public init(title: Text, subtitle: Text?) {
         self.title = title
         self.subtitle = subtitle
     }
     
-    public func build() -> Widget {
-        if let subtitle = self.subtitle {
-            return VerticalStack(spacing: .halfUnit, children: [ title, subtitle ])
-        } else {
-            return VerticalStack(spacing: .halfUnit, children: [ title ])
+    public var body: Widget {
+        VerticalStack(spacing: .halfUnit) {
+            if subtitle != nil {
+                title
+                subtitle!
+            } else {
+                title
+            }
         }
     }
 }

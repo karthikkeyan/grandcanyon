@@ -9,24 +9,33 @@
 import UIKit
 
 public struct ShadowConatinerBuilder: Hashable {
-    public var shadowColor: UIColor = .lightGray
+    public var shadowColor: UIColor = .gray
     public var opacity: Float = 0.2
-    public var offset: CGSize = CGSize(width: 0, height: .halfUnit)
+    public var offset: CGSize = CGSize(width: 0, height: .halfUnit/2)
     public var radius: CGFloat = .singleUnit
     public var blur: CGFloat = .quaterUnit
     public var backgroundColor: UIColor = .white
+    
+    public init() { }
 }
 
 public struct ShadowContainer: ViewWidget {
-    @WidgetRef public var child: Widget
+    @WidgetRef fileprivate var child: Widget
     
     fileprivate let builder: ShadowConatinerBuilder
     
-    public init(child: Widget, build: ((inout ShadowConatinerBuilder) -> Void)? = nil) {
-        self.child = child
-        var builder = ShadowConatinerBuilder()
-        build?(&builder)
-        self.builder = builder
+    public init(
+        properties: ShadowConatinerBuilder = ShadowConatinerBuilder(),
+        @WidgetBuilder body: () -> Widget
+    ) {
+        let content = body()
+        if let tuple = content as? TupleWidget, let first = tuple.widgets.first {
+            child = first
+        } else {
+            child = content
+        }
+
+        builder = properties
     }
 
     public func viewProvider(controller: ViewWidgetController<ShadowContainer>) -> TypeSafeViewProvider<ShadowContainer, UIView> {

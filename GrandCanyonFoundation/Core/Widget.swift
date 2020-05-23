@@ -26,7 +26,8 @@ extension HashableWidget where Self: Equatable {
 }
 
 public protocol BuildableWidget {
-    func build() -> Widget
+    var body: Widget { get }
+
     func controller() -> WidgetController
 }
 

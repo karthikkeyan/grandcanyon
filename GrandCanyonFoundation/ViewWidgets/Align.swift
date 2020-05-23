@@ -9,7 +9,16 @@
 import UIKit
 
 struct Align: ViewWidget {
-    @WidgetRef var child: Widget
+    @WidgetRef fileprivate var child: Widget
+    
+    public init(@WidgetBuilder body: () -> Widget) {
+        let content = body()
+        if let tuple = content as? TupleWidget, let first = tuple.widgets.first {
+            child = first
+        } else {
+            child = content
+        }
+    }
     
     func viewProvider(controller: ViewWidgetController<Align>) -> TypeSafeViewProvider<Align, UIView> {
         return AlignViewProvider(controller: controller)

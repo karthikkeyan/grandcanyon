@@ -12,8 +12,8 @@ import UIKit
 struct JourneyDetails: PureWidget {
     let stepGroups: [StepGroup]
     
-    func build() -> Widget {
-        return VerticalList(children: stepGroups)
+    var body: Widget {
+        Table(rows: stepGroups)
     }
 }
 
@@ -22,21 +22,26 @@ struct StepGroup: PureWidget {
     let subtitle: String?
     let steps: [Step]
     
-    func build() -> Widget {
-        var children: [Widget] = []
+    var body: Widget {
+        ShadowContainer {
+            Insets(insets: .init(horizontal: .doubleUnit, vertical: .tripleUnit)) {
+                VerticalStack(spacing: .tripleUnit) {
+                    if subtitle != nil {
+                        TitleSubtitle(
+                            title: Text(text: title, font: .sectionHeading),
+                            subtitle: Text(text: subtitle!, color: .subtitle)
+                        )
+                    } else {
+                        TitleSubtitle(
+                            title: Text(text: title, font: .sectionHeading),
+                            subtitle: nil
+                        )
+                    }
 
-        if let subtitle = self.subtitle {
-            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading),
-                                          subtitle: Text(text: subtitle, color: .subtitle)))
-        } else {
-            children.append(TitleSubtitle(title: Text(text: title, font: .sectionHeading),
-                                          subtitle: nil))
+                    ForEach(self.steps) { $0 }
+                }
+            }
         }
-
-        children.append(contentsOf: steps)
-        let list = VerticalStack(spacing: .tripleUnit, children: children)
-        let insets = Insets(insets: UIEdgeInsets(horizontal: .doubleUnit, vertical: .tripleUnit), child: list)
-        return ShadowContainer(child: insets)
     }
 }
 
@@ -44,23 +49,22 @@ struct Step: PureWidget {
     let title: String
     let type: String?
     let isCompleted: Bool
-
-    func build() -> Widget {
-        let sizedImage = Image(name: IconNames.unchecked)
-        let text = TitleSubtitle(title: Text(text: title, font: .itemTitle, color: .themeBlue),
-                                 subtitle: Text(text: title, color: .subtitle))
-        return HorizontalStack(distribution: .equalSpacing, alignment: .center, spacing: .singleUnit, children: [text, sizedImage])
+    
+    var body: Widget {
+        HorizontalStack(distribution: .equalSpacing, alignment: .center, spacing: .singleUnit) {
+            if type != nil {
+                TitleSubtitle(
+                    title: Text(text: title, font: .itemTitle, color: .themeBlue),
+                    subtitle: Text(text: type!, color: .subtitle)
+                )
+            } else {
+                TitleSubtitle(
+                    title: Text(text: title, font: .itemTitle, color: .themeBlue),
+                    subtitle: nil
+                )
+            }
+            
+            Image(name: IconNames.unchecked)
+        }
     }
 }
-
-/**
- Total Number of Lines:
- ======================
- Without Line Formatting: 10
- */
-
-/**
- Total Number of Lines:
- ======================
- With Line Formatting: 13
- */

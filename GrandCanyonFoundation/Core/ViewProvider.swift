@@ -23,7 +23,7 @@ open class ViewProvider<W: Widget, V: UIView> {
             return nil
         }
         
-        let built = controller.build()
+        let built = controller.body
         return controller.widgetAsHashable == built.asHashable ? nil : [built]
     }
     

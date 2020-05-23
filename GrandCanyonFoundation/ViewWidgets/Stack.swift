@@ -9,23 +9,30 @@
 import UIKit
 
 public struct Stack: ViewWidget {
-    let direction: NSLayoutConstraint.Axis
-    let distribution: UIStackView.Distribution
-    let alignment: UIStackView.Alignment
-    let spacing: CGFloat
-    @WidgetCollectionRef var children: [Widget]
+    fileprivate let direction: NSLayoutConstraint.Axis
+    fileprivate let distribution: UIStackView.Distribution
+    fileprivate let alignment: UIStackView.Alignment
+    fileprivate let spacing: CGFloat
+    @WidgetCollectionRef fileprivate var children: [Widget]
     
     public init(direction: NSLayoutConstraint.Axis = .vertical,
                 distribution: UIStackView.Distribution = .fill,
                 alignment: UIStackView.Alignment = .fill,
                 spacing: CGFloat = 0,
-                children: [Widget]) {
+                @WidgetBuilder body: () -> Widget) {
         self.direction = direction
         self.distribution = distribution
         self.alignment = alignment
         self.spacing = spacing
-        self.children = children
+
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            self.children = tuple.widgets
+        } else {
+            self.children = [content]
+        }
     }
+    
     
     public func viewProvider(controller: ViewWidgetController<Stack>) -> TypeSafeViewProvider<Stack, UIStackView> {
         return StackViewProvider(controller: controller)
@@ -62,21 +69,21 @@ class StackViewProvider: TypeSafeViewProvider<Stack, UIStackView> {
 public func VerticalStack(distribution: UIStackView.Distribution = .fill,
                           alignment: UIStackView.Alignment = .fill,
                           spacing: CGFloat = 0,
-                          children: [Widget]) -> Stack {
+                          @WidgetBuilder body: () -> Widget) -> Stack {
     return Stack(direction: .vertical,
                  distribution: distribution,
                  alignment: alignment,
                  spacing: spacing,
-                 children: children)
+                 body: body)
 }
 
 public func HorizontalStack(distribution: UIStackView.Distribution = .fill,
                             alignment: UIStackView.Alignment = .fill,
                             spacing: CGFloat = 0,
-                            children: [Widget]) -> Stack {
+                            @WidgetBuilder body: () -> Widget) -> Stack {
     return Stack(direction: .horizontal,
                  distribution: distribution,
                  alignment: alignment,
                  spacing: spacing,
-                 children: children)
+                 body: body)
 }

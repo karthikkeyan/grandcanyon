@@ -13,10 +13,10 @@ public protocol WidgetController: class {
     var parent: WidgetController? { get set }
     var child: WidgetController? { get set }
     var widgetAsHashable: String { get }
-    
+    var body: Widget { get }
+
     func viewForMount(parent: WidgetController?) -> UIView
     func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView?
-    func build() -> Widget
     func willMount()
     func didMount()
 }
@@ -59,7 +59,7 @@ public class PureWidgetController<W: Widget>: WidgetController {
         if widget.kind == .view {
             rootView = viewProvider.view(for: widget)
         } else {
-            var nextWidget: Widget = widget.build()
+            var nextWidget: Widget = widget.body
             var nextParentController: WidgetController = self
             var nextChildController = nextWidget.controller()
             repeat {
@@ -67,10 +67,10 @@ public class PureWidgetController<W: Widget>: WidgetController {
                 nextParentController.child = nextChildController
                 
                 let previousHash = nextWidget.asHashable
-                nextWidget = nextWidget.build()
+                nextWidget = nextWidget.body
                 if previousHash != nextWidget.asHashable {
                     nextParentController = nextChildController
-                    nextWidget = nextWidget.build()
+                    nextWidget = nextWidget.body
                     nextChildController = nextWidget.controller()
                     
                     // Debugging purpose condition
@@ -98,8 +98,8 @@ public class PureWidgetController<W: Widget>: WidgetController {
         return childView
     }
 
-    public func build() -> Widget {
-        return widget.build()
+    public var body: Widget {
+        return widget.body
     }
 }
 
@@ -147,8 +147,8 @@ public class ViewWidgetController<W: ViewWidget>: WidgetController {
         return viewProvider.view(for: widget)
     }
 
-    public func build() -> Widget {
-        return widget.build()
+    public var body: Widget {
+        return widget.body
     }
     
     // MARK: Private Methods

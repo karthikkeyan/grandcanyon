@@ -9,14 +9,20 @@
 import UIKit
 
 public struct Insets: ViewWidget {
-    let insets: UIEdgeInsets
-    @WidgetRef public var child: Widget
+    fileprivate let insets: UIEdgeInsets
+    @WidgetRef fileprivate var child: Widget
     
-    public init(insets: UIEdgeInsets, child: Widget) {
+    public init(insets: UIEdgeInsets, @WidgetBuilder body: () -> Widget) {
+        let content = body()
+        if let tuple = content as? TupleWidget, let first = tuple.widgets.first {
+            child = first
+        } else {
+            child = content
+        }
+
         self.insets = insets
-        self.child = child
     }
-    
+
     public func viewProvider(controller: ViewWidgetController<Insets>) -> TypeSafeViewProvider<Insets, UIView> {
         return InsetsViewProvider(controller: controller)
     }
