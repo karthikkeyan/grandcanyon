@@ -26,17 +26,10 @@ struct StepGroup: PureWidget {
         ShadowContainer {
             Insets(insets: .init(horizontal: .doubleUnit, vertical: .tripleUnit)) {
                 VerticalStack(spacing: .tripleUnit) {
-                    if subtitle != nil {
-                        TitleSubtitle(
-                            title: Text(text: title, font: .sectionHeading),
-                            subtitle: Text(text: subtitle!, color: .subtitle)
-                        )
-                    } else {
-                        TitleSubtitle(
-                            title: Text(text: title, font: .sectionHeading),
-                            subtitle: nil
-                        )
-                    }
+                    TitleSubtitle(
+                        title: Text(text: title, font: .sectionHeading),
+                        subtitle: subtitle == nil ? nil : Text(text: subtitle!, color: .subtitle)
+                    )
 
                     ForEach(self.steps) { $0 }
                 }
@@ -51,18 +44,11 @@ struct Step: PureWidget {
     let isCompleted: Bool
     
     var body: Widget {
-        HorizontalStack(distribution: .equalSpacing, alignment: .center, spacing: .singleUnit) {
-            if type != nil {
-                TitleSubtitle(
-                    title: Text(text: title, font: .itemTitle, color: .themeBlue),
-                    subtitle: Text(text: type!, color: .subtitle)
-                )
-            } else {
-                TitleSubtitle(
-                    title: Text(text: title, font: .itemTitle, color: .themeBlue),
-                    subtitle: nil
-                )
-            }
+        HorizontalStack(distribution: .equalCentering, alignment: .center, spacing: .singleUnit) {
+            TitleSubtitle(
+                title: Text(text: title, font: .itemTitle, color: .themeBlue),
+                subtitle: type == nil ? nil : Text(text: type!, color: .subtitle)
+            )
             
             Image(name: IconNames.unchecked)
         }

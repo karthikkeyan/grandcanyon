@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		255A836024788ECA0048E064 /* WidgetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A835F24788ECA0048E064 /* WidgetBuilder.swift */; };
+		255A83622478BAE80048E064 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A83612478BAE80048E064 /* UIView+Layout.swift */; };
 		FE1898C5240E3FF6004D0092 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898C4240E3FF6004D0092 /* Insets.swift */; };
 		FE1898C7240E4070004D0092 /* UIKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898C6240E4070004D0092 /* UIKit+Utils.swift */; };
 		FE1898C8240E4332004D0092 /* UIKit+Utils.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE1898C6240E4070004D0092 /* UIKit+Utils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,6 +121,7 @@
 
 /* Begin PBXFileReference section */
 		255A835F24788ECA0048E064 /* WidgetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBuilder.swift; sourceTree = "<group>"; };
+		255A83612478BAE80048E064 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		FE1898C4240E3FF6004D0092 /* Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
 		FE1898C6240E4070004D0092 /* UIKit+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Utils.swift"; sourceTree = "<group>"; };
 		FE1898CA240E46EB004D0092 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				FE1898D3240E55EA004D0092 /* IconNames.swift */,
 				FE861854240B1A3D00ABF516 /* Journey.swift */,
 				FE861856240B1ABD00ABF516 /* Journey+Mock.swift */,
+				255A83612478BAE80048E064 /* UIView+Layout.swift */,
 				FE59A43323F62EBC0016BDDB /* Main.storyboard */,
 				FE59A43623F62EBD0016BDDB /* Assets.xcassets */,
 				FE59A43823F62EBD0016BDDB /* LaunchScreen.storyboard */,
@@ -604,6 +607,7 @@
 				FE59A43223F62EBC0016BDDB /* ViewController.swift in Sources */,
 				FE861857240B1ABD00ABF516 /* Journey+Mock.swift in Sources */,
 				FE861853240B1A1D00ABF516 /* Style.swift in Sources */,
+				255A83622478BAE80048E064 /* UIView+Layout.swift in Sources */,
 				FE59A42E23F62EBC0016BDDB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
