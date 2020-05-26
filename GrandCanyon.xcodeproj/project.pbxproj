@@ -7,8 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		251B5C552479AFEB007BA9B8 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C542479AFEB007BA9B8 /* Geometry.swift */; };
+		251B5C56247B025B007BA9B8 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A83612478BAE80048E064 /* UIView+Layout.swift */; };
+		251B5C58247B06C7007BA9B8 /* StatefulWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C57247B06C7007BA9B8 /* StatefulWidget.swift */; };
+		251B5C5B247B4080007BA9B8 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251B5C5A247B4080007BA9B8 /* View.swift */; };
+		2552ED232479A46000C2EACB /* PureWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2552ED222479A46000C2EACB /* PureWidgetController.swift */; };
+		2552ED252479A48000C2EACB /* ViewWidgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2552ED242479A48000C2EACB /* ViewWidgetController.swift */; };
+		2552ED292479A52700C2EACB /* ViewWidgetController.swift in Headers */ = {isa = PBXBuildFile; fileRef = 2552ED242479A48000C2EACB /* ViewWidgetController.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		2552ED2A2479A52700C2EACB /* PureWidgetController.swift in Headers */ = {isa = PBXBuildFile; fileRef = 2552ED222479A46000C2EACB /* PureWidgetController.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		2552ED2B2479A52700C2EACB /* WidgetBuilder.swift in Headers */ = {isa = PBXBuildFile; fileRef = 255A835F24788ECA0048E064 /* WidgetBuilder.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		2552ED2D2479A56C00C2EACB /* ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2552ED2C2479A56C00C2EACB /* ForEach.swift */; };
+		2552ED2F2479A58400C2EACB /* TupleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2552ED2E2479A58400C2EACB /* TupleWidget.swift */; };
+		2552ED302479A6E500C2EACB /* ForEach.swift in Headers */ = {isa = PBXBuildFile; fileRef = 2552ED2C2479A56C00C2EACB /* ForEach.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		255A836024788ECA0048E064 /* WidgetBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A835F24788ECA0048E064 /* WidgetBuilder.swift */; };
-		255A83622478BAE80048E064 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255A83612478BAE80048E064 /* UIView+Layout.swift */; };
 		FE1898C5240E3FF6004D0092 /* Insets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898C4240E3FF6004D0092 /* Insets.swift */; };
 		FE1898C7240E4070004D0092 /* UIKit+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1898C6240E4070004D0092 /* UIKit+Utils.swift */; };
 		FE1898C8240E4332004D0092 /* UIKit+Utils.swift in Headers */ = {isa = PBXBuildFile; fileRef = FE1898C6240E4070004D0092 /* UIKit+Utils.swift */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,6 +131,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		251B5C542479AFEB007BA9B8 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		251B5C57247B06C7007BA9B8 /* StatefulWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatefulWidget.swift; sourceTree = "<group>"; };
+		251B5C5A247B4080007BA9B8 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		2552ED222479A46000C2EACB /* PureWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PureWidgetController.swift; sourceTree = "<group>"; };
+		2552ED242479A48000C2EACB /* ViewWidgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWidgetController.swift; sourceTree = "<group>"; };
+		2552ED2C2479A56C00C2EACB /* ForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEach.swift; sourceTree = "<group>"; };
+		2552ED2E2479A58400C2EACB /* TupleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TupleWidget.swift; sourceTree = "<group>"; };
 		255A835F24788ECA0048E064 /* WidgetBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetBuilder.swift; sourceTree = "<group>"; };
 		255A83612478BAE80048E064 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
 		FE1898C4240E3FF6004D0092 /* Insets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insets.swift; sourceTree = "<group>"; };
@@ -210,6 +228,90 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		251B5C59247B4076007BA9B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				251B5C5A247B4080007BA9B8 /* View.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2552ED262479A4B000C2EACB /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				FE861861240B346600ABF516 /* Widget+Internal.swift */,
+				FE1BA71623F63B50002B2B74 /* Widget.swift */,
+				FE7DB51E23FB52A300FA4331 /* PureWidget.swift */,
+				FE7DB52023FB52BB00FA4331 /* ViewWidget.swift */,
+				251B5C57247B06C7007BA9B8 /* StatefulWidget.swift */,
+				FE86185E240B329100ABF516 /* PropertyWrappers.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		2552ED272479A4BB00C2EACB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FEAFE67D23F7977B001B491E /* WidgetController.swift */,
+				FE49C34823F75040004A5E6B /* ViewProvider.swift */,
+				2552ED242479A48000C2EACB /* ViewWidgetController.swift */,
+				2552ED222479A46000C2EACB /* PureWidgetController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2552ED282479A4C200C2EACB /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				FE1BA71D23F63BE0002B2B74 /* WidgetRenderingEngine.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		2552ED312479A91E00C2EACB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FE861852240B1A1D00ABF516 /* Style.swift */,
+				FE1898D3240E55EA004D0092 /* IconNames.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		2552ED322479A92C00C2EACB /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FE59A43123F62EBC0016BDDB /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2552ED332479A93800C2EACB /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				FE861854240B1A3D00ABF516 /* Journey.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		2552ED342479A94400C2EACB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FE861856240B1ABD00ABF516 /* Journey+Mock.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2552ED352479A94C00C2EACB /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				FE59A43323F62EBC0016BDDB /* Main.storyboard */,
+				FE59A43623F62EBD0016BDDB /* Assets.xcassets */,
+				FE59A43823F62EBD0016BDDB /* LaunchScreen.storyboard */,
+				FE59A43B23F62EBD0016BDDB /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		FE1BA6F923F63AF3002B2B74 /* GrandCanyonFoundation */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +344,9 @@
 		FE2F17D623F63FE3000A6757 /* ViewWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				255A835F24788ECA0048E064 /* WidgetBuilder.swift */,
+				2552ED2C2479A56C00C2EACB /* ForEach.swift */,
+				2552ED2E2479A58400C2EACB /* TupleWidget.swift */,
 				FE1BA71823F63B8F002B2B74 /* Text.swift */,
 				FE1898D5240E59AF004D0092 /* TitleSubtitle.swift */,
 				FE1898CA240E46EB004D0092 /* Stack.swift */,
@@ -250,6 +355,7 @@
 				FE861842240B0B8B00ABF516 /* ShadowContainer.swift */,
 				FE1898C4240E3FF6004D0092 /* Insets.swift */,
 				FE1898CD240E48D5004D0092 /* Image.swift */,
+				251B5C542479AFEB007BA9B8 /* Geometry.swift */,
 			);
 			path = ViewWidgets;
 			sourceTree = "<group>";
@@ -257,15 +363,10 @@
 		FE49C34723F74DDD004A5E6B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				FE861861240B346600ABF516 /* Widget+Internal.swift */,
-				FE1BA71623F63B50002B2B74 /* Widget.swift */,
-				FE7DB52023FB52BB00FA4331 /* ViewWidget.swift */,
-				FE7DB51E23FB52A300FA4331 /* PureWidget.swift */,
-				FE1BA71D23F63BE0002B2B74 /* WidgetRenderingEngine.swift */,
-				FE49C34823F75040004A5E6B /* ViewProvider.swift */,
-				FEAFE67D23F7977B001B491E /* WidgetController.swift */,
-				FE86185E240B329100ABF516 /* PropertyWrappers.swift */,
-				255A835F24788ECA0048E064 /* WidgetBuilder.swift */,
+				251B5C59247B4076007BA9B8 /* View */,
+				2552ED282479A4C200C2EACB /* Engine */,
+				2552ED272479A4BB00C2EACB /* Controllers */,
+				2552ED262479A4B000C2EACB /* Widgets */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -298,17 +399,12 @@
 		FE59A42C23F62EBC0016BDDB /* GrandCanyon */ = {
 			isa = PBXGroup;
 			children = (
+				2552ED352479A94C00C2EACB /* SupportingFiles */,
+				2552ED342479A94400C2EACB /* Services */,
+				2552ED332479A93800C2EACB /* Widgets */,
+				2552ED322479A92C00C2EACB /* Controllers */,
+				2552ED312479A91E00C2EACB /* Utils */,
 				FE59A42D23F62EBC0016BDDB /* AppDelegate.swift */,
-				FE59A43123F62EBC0016BDDB /* ViewController.swift */,
-				FE861852240B1A1D00ABF516 /* Style.swift */,
-				FE1898D3240E55EA004D0092 /* IconNames.swift */,
-				FE861854240B1A3D00ABF516 /* Journey.swift */,
-				FE861856240B1ABD00ABF516 /* Journey+Mock.swift */,
-				255A83612478BAE80048E064 /* UIView+Layout.swift */,
-				FE59A43323F62EBC0016BDDB /* Main.storyboard */,
-				FE59A43623F62EBD0016BDDB /* Assets.xcassets */,
-				FE59A43823F62EBD0016BDDB /* LaunchScreen.storyboard */,
-				FE59A43B23F62EBD0016BDDB /* Info.plist */,
 			);
 			path = GrandCanyon;
 			sourceTree = "<group>";
@@ -334,6 +430,7 @@
 		FE861849240B11B800ABF516 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				255A83612478BAE80048E064 /* UIView+Layout.swift */,
 				FE86184A240B11D400ABF516 /* CoreGraphic+Utils.swift */,
 				FE86184F240B179F00ABF516 /* Units.swift */,
 				FE861858240B1FA200ABF516 /* UIView+Utils.swift */,
@@ -369,6 +466,10 @@
 				FE1898CC240E4709004D0092 /* Stack.swift in Headers */,
 				FE1898CF240E4A05004D0092 /* Image.swift in Headers */,
 				FE1898D7240E59ED004D0092 /* TitleSubtitle.swift in Headers */,
+				2552ED292479A52700C2EACB /* ViewWidgetController.swift in Headers */,
+				2552ED2A2479A52700C2EACB /* PureWidgetController.swift in Headers */,
+				2552ED2B2479A52700C2EACB /* WidgetBuilder.swift in Headers */,
+				2552ED302479A6E500C2EACB /* ForEach.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,22 +667,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2552ED2D2479A56C00C2EACB /* ForEach.swift in Sources */,
 				FE1BA71923F63B8F002B2B74 /* Text.swift in Sources */,
 				FE861850240B179F00ABF516 /* Units.swift in Sources */,
 				FE861859240B1FA200ABF516 /* UIView+Utils.swift in Sources */,
 				FE1898C5240E3FF6004D0092 /* Insets.swift in Sources */,
+				251B5C56247B025B007BA9B8 /* UIView+Layout.swift in Sources */,
+				2552ED252479A48000C2EACB /* ViewWidgetController.swift in Sources */,
 				FE1898D6240E59AF004D0092 /* TitleSubtitle.swift in Sources */,
+				2552ED232479A46000C2EACB /* PureWidgetController.swift in Sources */,
 				FE1898C7240E4070004D0092 /* UIKit+Utils.swift in Sources */,
 				FE1BA71E23F63BE0002B2B74 /* WidgetRenderingEngine.swift in Sources */,
 				FE7DB52123FB52BB00FA4331 /* ViewWidget.swift in Sources */,
 				FE49C34923F75040004A5E6B /* ViewProvider.swift in Sources */,
 				FE861862240B346600ABF516 /* Widget+Internal.swift in Sources */,
 				255A836024788ECA0048E064 /* WidgetBuilder.swift in Sources */,
+				251B5C58247B06C7007BA9B8 /* StatefulWidget.swift in Sources */,
 				FE7DB51F23FB52A300FA4331 /* PureWidget.swift in Sources */,
 				FE1BA71723F63B50002B2B74 /* Widget.swift in Sources */,
 				FE861843240B0B8B00ABF516 /* ShadowContainer.swift in Sources */,
+				251B5C552479AFEB007BA9B8 /* Geometry.swift in Sources */,
+				2552ED2F2479A58400C2EACB /* TupleWidget.swift in Sources */,
 				FEAFE67E23F7977B001B491E /* WidgetController.swift in Sources */,
 				FE1898CE240E48D5004D0092 /* Image.swift in Sources */,
+				251B5C5B247B4080007BA9B8 /* View.swift in Sources */,
 				FE86185F240B329100ABF516 /* PropertyWrappers.swift in Sources */,
 				FEAFE68323F7C6E8001B491E /* Table.swift in Sources */,
 				FE86184B240B11D400ABF516 /* CoreGraphic+Utils.swift in Sources */,
@@ -607,7 +716,6 @@
 				FE59A43223F62EBC0016BDDB /* ViewController.swift in Sources */,
 				FE861857240B1ABD00ABF516 /* Journey+Mock.swift in Sources */,
 				FE861853240B1A1D00ABF516 /* Style.swift in Sources */,
-				255A83622478BAE80048E064 /* UIView+Layout.swift in Sources */,
 				FE59A42E23F62EBC0016BDDB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

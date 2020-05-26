@@ -41,6 +41,7 @@ class InsetsViewProvider: TypeSafeViewProvider<Insets, UIView> {
     }
     
     override func view(for widget: Insets) -> UIView {
+        print("Insets create called")
         let container = UIView(frame: .zero)
         container.directionalLayoutMargins = NSDirectionalEdgeInsets(insets: widget.insets)
         
@@ -56,6 +57,7 @@ class InsetsViewProvider: TypeSafeViewProvider<Insets, UIView> {
     }
 
     override func update(view: UIView, using widget: Insets) {
+        print("Insets updated called")
         guard let childView = self.childView,
             let constraints = self.constraints,
             let insets = controller?.widget.insets else {

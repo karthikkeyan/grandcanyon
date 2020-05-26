@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ConstraintSide: Hashable {
+public enum ConstraintSide: Hashable {
     case leading
     case trailing
     case top
@@ -17,10 +17,10 @@ enum ConstraintSide: Hashable {
     case width(CGFloat)
     case height(CGFloat)
     
-    static let `default`: [ConstraintSide] = [ .leading, .trailing, .top, .bottom ]
+    public static let `default`: [ConstraintSide] = [ .leading, .trailing, .top, .bottom ]
 }
 
-extension UIView {
+public extension UIView {
     @discardableResult
     func clipEdges(
         to parentView: UIView,

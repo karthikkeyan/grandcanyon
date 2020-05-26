@@ -10,10 +10,20 @@ import GrandCanyonFoundation
 import UIKit
 
 struct JourneyDetails: PureWidget {
+    let title: String
+    let description: String
     let stepGroups: [StepGroup]
     
     var body: Widget {
-        Table(rows: stepGroups)
+        Table {
+            Geometry { size in
+                Insets(insets: .doubleUnit) {
+                    Text(text: "Hello World")
+                }
+            }
+            
+//            ForEach(self.stepGroups) { $0 }
+        }
     }
 }
 

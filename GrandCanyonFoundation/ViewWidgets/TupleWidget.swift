@@ -1,58 +1,12 @@
 //
-//  WidgetBuilder.swift
+//  TupleWidget.swift
 //  GrandCanyonFoundation
 //
-//  Created by Karthikkeyan Bala Sundaram on 5/22/20.
+//  Created by Karthikkeyan Bala Sundaram on 5/23/20.
 //  Copyright © 2020 Karthikkeyan Bala Sundaram. All rights reserved.
 //
 
 import UIKit
-
-@_functionBuilder
-public struct WidgetBuilder {
-    public static func buildBlock(_ widgets: Widget...) -> Widget {
-        return TupleWidget(widgets: widgets)
-    }
-    
-    public static func buildBlock(_ widget: Widget) -> Widget {
-        return widget
-    }
-    
-    public static func buildEither(first: Widget) -> Widget {
-        return first
-    }
-    
-    public static func buildEither(second: Widget) -> Widget {
-        return second
-    }
-
-    public static func buildOptional(_ widget: Widget?) -> Widget? {
-        return widget
-    }
-}
-
-// MARK: - ForEach
-
-public struct ForEach: ViewWidget {
-    internal let id = UUID()
-    internal let widgets: [Widget]
-    
-    public init<T>(_ items: [T], _ iteration: (T) -> Widget) {
-        widgets = items.map(iteration)
-    }
-    
-    public func viewProvider(
-        controller: ViewWidgetController<ForEach>
-    ) -> TypeSafeViewProvider<ForEach, UIView> {
-        return TupleViewProvider(controller: controller)
-    }
-
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
-}
-
-// MARK: - TupleWidget
 
 internal struct TupleWidget: ViewWidget {
     private let _widgets: [Widget]

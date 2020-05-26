@@ -1,38 +1,20 @@
 //
-//  WidgetController.swift
+//  PureWidgetController.swift
 //  GrandCanyonFoundation
 //
-//  Created by Karthikkeyan Balan on 2/14/20.
+//  Created by Karthikkeyan Bala Sundaram on 5/23/20.
 //  Copyright © 2020 Karthikkeyan Bala Sundaram. All rights reserved.
 //
 
 import UIKit
 
-// MARK: WidgetController
-public protocol WidgetController: class {
-    var parent: WidgetController? { get set }
-    var child: WidgetController? { get set }
-    var widgetAsHashable: String { get }
-    var body: Widget { get }
-
-    func viewForMount(parent: WidgetController?) -> UIView
-    func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView?
-    func willMount()
-    func didMount()
-}
-
-extension WidgetController {
-    public func willMount() { }
-    public func didMount() { }
-}
-
-// MARK: PureWidgetController
 public class PureWidgetController<W: Widget>: WidgetController {
     // WidgetController Properties
     public weak var parent: WidgetController?
     public var child: WidgetController?
     
     // Public Properties
+    public private(set) var model: Widget
     public private(set) var widget: W
     public var widgetAsHashable: String { return widget.asHashable }
     
@@ -42,6 +24,7 @@ public class PureWidgetController<W: Widget>: WidgetController {
 
     public init(widget: W) {
         self.widget = widget
+        self.model = widget
     }
 
     // MARK: Public Methods
@@ -100,64 +83,5 @@ public class PureWidgetController<W: Widget>: WidgetController {
 
     public var body: Widget {
         return widget.body
-    }
-}
-
-// MARK: ViewWidgetController
-public class ViewWidgetController<W: ViewWidget>: WidgetController {
-    // WidgetController Properties
-    public weak var parent: WidgetController?
-    public var child: WidgetController?
-    
-    // Pubic Properties
-    public private(set) var widget: W
-    public var widgetAsHashable: String { return widget.asHashable }
-    
-    // Private Properties
-    private lazy var viewProvider: ViewProvider<W, W.View> = widget.viewProvider(controller: self)
-    private var children: [AnyHashable: WidgetController]?
-    
-    public init(widget: W) {
-        self.widget = widget
-    }
-
-    // MARK: Public Methods
-    public func viewForChildWidget(_ childWidget: Widget, at index: Int) -> UIView? {
-        let childrenKey = key(for: childWidget, at: index)
-        if let childController = children?[childrenKey] {
-            return childController.viewForMount(parent: self)
-        }
-
-        if children == nil {
-            children = [:]
-        }
-
-        let childController = childWidget.controller()
-        let childView = childController.viewForMount(parent: self)
-        children?[childrenKey] = childController
-        return childView
-    }
-
-    public func viewForMount(parent: WidgetController?) -> UIView {
-        self.parent = parent
-        
-        willMount()
-        defer { didMount() }
-        
-        return viewProvider.view(for: widget)
-    }
-
-    public var body: Widget {
-        return widget.body
-    }
-    
-    // MARK: Private Methods
-    private func key(for widget: Widget, at index: Int) -> String {
-        let keyString = (widget.asHashable + "\(index)")
-        guard let keyData = keyString.data(using: .utf8) else {
-            assert(false, "Fail to create key for Widget: \(widget) at: \(index)")
-            return keyString
-        }
-        return keyData.base64EncodedString()
     }
 }

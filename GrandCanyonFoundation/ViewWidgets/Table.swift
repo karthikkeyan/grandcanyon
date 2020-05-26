@@ -8,21 +8,26 @@
 
 import UIKit
 
-// MARK: Table
 public struct Table: ViewWidget {
     @WidgetCollectionRef fileprivate var rows: [Widget]
 
-    public init(rows: [Widget]) {
-        self.rows = rows
+    public init(@WidgetBuilder body: () -> Widget) {
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            rows = tuple.widgets
+        } else {
+            rows = [content]
+        }
     }
     
-    public func viewProvider(controller: ViewWidgetController<Table>) -> TypeSafeViewProvider<Table, UITableView> {
+    public func viewProvider(
+        controller: ViewWidgetController<Table>
+    ) -> TypeSafeViewProvider<Table, UITableView> {
         return TableViewProvider(controller: controller)
     }
 }
 
 class TableViewProvider: TypeSafeViewProvider<Table, UITableView> {
-    
     private let coordinator: TableViewCoordinator
     
     override init(controller: ViewWidgetController<Table>) {
