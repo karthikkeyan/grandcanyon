@@ -13,15 +13,21 @@ public struct Text: ViewWidget {
     public let font: UIFont
     public let color: UIColor
     public let alignment: NSTextAlignment
+    public let lineSpacing: CGFloat
+    public let lineHeight: CGFloat?
     
     public init(text: String?,
                 font: UIFont = .systemFont(ofSize: 14, weight: .regular),
                 color: UIColor = .black,
-                alignment: NSTextAlignment = .left) {
+                alignment: NSTextAlignment = .left,
+                lineSpacing: CGFloat = .zero,
+                lineHeight: CGFloat? = nil) {
         self.text = text
         self.font = font
         self.color = color
         self.alignment = alignment
+        self.lineSpacing = lineSpacing
+        self.lineHeight = lineHeight
     }
     
     public func viewProvider(controller: ViewWidgetController<Text>) -> TypeSafeViewProvider<Text, UILabel> {
@@ -32,18 +38,25 @@ public struct Text: ViewWidget {
 class TextViewProvider: TypeSafeViewProvider<Text, UILabel> {
     override func view(for widget: Text) -> UILabel {
         let label = UILabel(frame: .zero)
-        label.font = widget.font
-        label.textColor = widget.color
-        label.textAlignment = widget.alignment
-        label.text = widget.text
         label.numberOfLines = 0
+        update(view: label, using: widget)
         return label
     }
 
     override func update(view: UILabel, using widget: Text) {
-        view.font = widget.font
-        view.textColor = widget.color
-        view.textAlignment = widget.alignment
-        view.text = widget.text
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = widget.lineSpacing
+        paragraphStyle.alignment = widget.alignment
+        if let lineHeight = widget.lineHeight {
+            paragraphStyle.minimumLineHeight = lineHeight
+            paragraphStyle.maximumLineHeight = lineHeight
+        }
+        
+        let _text = widget.text ?? ""
+        view.attributedText = NSMutableAttributedString(string: _text, attributes: [
+            .font: widget.font,
+            .foregroundColor: widget.color,
+            .paragraphStyle: paragraphStyle
+        ])
     }
 }

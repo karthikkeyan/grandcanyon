@@ -6,19 +6,21 @@
 //  Copyright © 2020 Karthikkeyan Bala Sundaram. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 public struct TitleSubtitle: PureWidget {
     private let title: Text
     private let subtitle: Text?
+    private let spacing: CGFloat
     
-    public init(title: Text, subtitle: Text?) {
+    public init(title: Text, subtitle: Text?, spacing: CGFloat = .halfUnit) {
         self.title = title
         self.subtitle = subtitle
+        self.spacing = spacing
     }
     
     public var body: Widget {
-        VerticalStack(spacing: .halfUnit) {
+        VStack(spacing: spacing) {
             if subtitle != nil {
                 title
                 subtitle!

@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         let list = engine.render()
         list.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(list)
-        list.clipMargins(to: view)
+        list.clipEdges(to: view)
     }
 
     private func setupNavigationBar() {

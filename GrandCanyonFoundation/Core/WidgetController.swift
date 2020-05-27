@@ -21,9 +21,9 @@ public protocol WidgetController: class {
     func didMount()
 }
 
-extension WidgetController {
-    public func willMount() { }
-    public func didMount() { }
+public extension WidgetController {
+    func willMount() { }
+    func didMount() { }
 }
 
 // MARK: PureWidgetController
@@ -93,8 +93,8 @@ public class PureWidgetController<W: Widget>: WidgetController {
         }
         
         let childController = childWidget.controller()
-        let childView = childController.viewForMount(parent: self)
         child = childController
+        let childView = childController.viewForMount(parent: self)
         return childView
     }
 
@@ -114,8 +114,9 @@ public class ViewWidgetController<W: ViewWidget>: WidgetController {
     public var widgetAsHashable: String { return widget.asHashable }
     
     // Private Properties
+    private var view: UIView?
     private lazy var viewProvider: ViewProvider<W, W.View> = widget.viewProvider(controller: self)
-    private var children: [AnyHashable: WidgetController]?
+    var children: [AnyHashable: WidgetController]?
     
     public init(widget: W) {
         self.widget = widget
@@ -133,18 +134,24 @@ public class ViewWidgetController<W: ViewWidget>: WidgetController {
         }
 
         let childController = childWidget.controller()
-        let childView = childController.viewForMount(parent: self)
         children?[childrenKey] = childController
+        let childView = childController.viewForMount(parent: self)
         return childView
     }
 
     public func viewForMount(parent: WidgetController?) -> UIView {
+        if let view = self.view {
+            return view
+        }
+        
         self.parent = parent
         
         willMount()
         defer { didMount() }
         
-        return viewProvider.view(for: widget)
+        let view = viewProvider.view(for: widget)
+        self.view = view
+        return view
     }
 
     public var body: Widget {

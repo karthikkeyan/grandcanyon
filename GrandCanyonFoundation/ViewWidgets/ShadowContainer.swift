@@ -9,8 +9,8 @@
 import UIKit
 
 public struct ShadowConatinerBuilder: Hashable {
-    public var shadowColor: UIColor = .gray
-    public var opacity: Float = 0.2
+    public var shadowColor: UIColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.08)
+    public var opacity: Float = 1.0
     public var offset: CGSize = CGSize(width: 0, height: .halfUnit/2)
     public var radius: CGFloat = .singleUnit
     public var blur: CGFloat = .quaterUnit

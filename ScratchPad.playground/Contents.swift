@@ -1,5 +1,5 @@
 import UIKit
-import GrandCanyonFoundation
+import SwiftUI
 import PlaygroundSupport
 
 //extension UIView {
@@ -50,3 +50,12 @@ struct Step: Hashable {
     let title: String
     let type: String
 }
+
+
+let view = List {
+    Text("HelloWorld")
+    Text("HelloWorld")
+    Text("HelloWorld")
+}.frame(height: 200)
+
+print(view)

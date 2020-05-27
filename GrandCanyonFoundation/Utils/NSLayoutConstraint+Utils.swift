@@ -1,14 +1,14 @@
 //
-//  UIView+Layout.swift
-//  DimensionCalculator
+//  NSLayoutConstraint+Utils.swift
+//  GrandCanyonFoundation
 //
-//  Created by Karthikkeyan Bala Sundaram on 4/22/20.
+//  Created by Karthikkeyan Bala Sundaram on 5/26/20.
 //  Copyright © 2020 Karthikkeyan Bala Sundaram. All rights reserved.
 //
 
 import UIKit
 
-enum ConstraintSide: Hashable {
+public enum ConstraintSide: Hashable {
     case leading
     case trailing
     case top
@@ -17,10 +17,10 @@ enum ConstraintSide: Hashable {
     case width(CGFloat)
     case height(CGFloat)
     
-    static let `default`: [ConstraintSide] = [ .leading, .trailing, .top, .bottom ]
+    public static let `default`: [ConstraintSide] = [ .leading, .trailing, .top, .bottom ]
 }
 
-extension UIView {
+public extension UIView {
     @discardableResult
     func clipEdges(
         to parentView: UIView,
@@ -28,7 +28,6 @@ extension UIView {
         sides: [ConstraintSide] = ConstraintSide.default
     ) -> [NSLayoutConstraint] {
         translatesAutoresizingMaskIntoConstraints = false
-
         let constraints: [NSLayoutConstraint] = sides.map {
             switch $0 {
             case .leading:
@@ -65,7 +64,6 @@ extension UIView {
         NSLayoutConstraint.activate(constraints)
         return constraints
     }
-
     @discardableResult
     func clipMargins(
         to parentView: UIView,
@@ -73,9 +71,7 @@ extension UIView {
         sides: [ConstraintSide] = ConstraintSide.default
     ) -> [NSLayoutConstraint] {
         guard !sides.isEmpty else { return [] }
-
         translatesAutoresizingMaskIntoConstraints = false
-
         let constraints: [NSLayoutConstraint] = sides.map {
             switch $0 {
             case .leading:

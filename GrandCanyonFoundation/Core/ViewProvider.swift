@@ -41,6 +41,8 @@ open class ViewProvider<W: Widget, V: UIView> {
     }
     
     open func update(view: V, using widget: W) { }
+    
+    open func apply(_ modifier: Modifier) { }
 }
 
 open class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> {
@@ -58,4 +60,16 @@ open class TypeSafeViewProvider<W: ViewWidget, V: UIView>: ViewProvider<W, V> {
     }
     
     override open func update(view: V, using widget: W) { }
+    
+    override open func apply(_ modifier: Modifier) {
+        if let sizeModifier = modifier as? SizeModifier {
+            apply(sizeModifier)
+        } else if let styleModifier = modifier as? StyleModifier {
+            apply(styleModifier)
+        }
+    }
+    
+    open func apply(_ modifier: SizeModifier) { }
+    
+    open func apply(_ modifier: StyleModifier) { }
 }

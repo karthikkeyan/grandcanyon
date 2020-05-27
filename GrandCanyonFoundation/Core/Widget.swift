@@ -37,5 +37,10 @@ extension BuildableWidget where Self: Widget {
     }
 }
 
+// MARK: - Modifier
+
+public protocol Modifier: HashableWidget { }
+
 // MARK: Widget
+
 public protocol Widget: HashableWidget, BuildableWidget, WidgetTypeProvider { }

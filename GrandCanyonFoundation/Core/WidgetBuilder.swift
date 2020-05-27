@@ -14,6 +14,10 @@ public struct WidgetBuilder {
         return TupleWidget(widgets: widgets)
     }
     
+    public static func buildBlock(_ widget: ForEach) -> Widget {
+        return TupleWidget(widgets: widget.widgets)
+    }
+    
     public static func buildBlock(_ widget: Widget) -> Widget {
         return widget
     }
@@ -35,7 +39,7 @@ public struct WidgetBuilder {
 
 public struct ForEach: ViewWidget {
     internal let id = UUID()
-    internal let widgets: [Widget]
+    internal var widgets: [Widget]
     
     public init<T>(_ items: [T], _ iteration: (T) -> Widget) {
         widgets = items.map(iteration)
@@ -49,6 +53,28 @@ public struct ForEach: ViewWidget {
 
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    public func before(@WidgetBuilder body: () -> Widget) -> ForEach {
+        var newWidget = self
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            newWidget.widgets.insert(contentsOf: tuple.widgets, at: 0)
+        } else {
+            newWidget.widgets.insert(content, at: 0)
+        }
+        return newWidget
+    }
+    
+    public func after(@WidgetBuilder body: () -> Widget) -> ForEach {
+        var newWidget = self
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            newWidget.widgets.append(contentsOf: tuple.widgets)
+        } else {
+            newWidget.widgets.append(content)
+        }
+        return newWidget
     }
 }
 
@@ -92,5 +118,3 @@ internal class TupleViewProvider<T: ViewWidget>: TypeSafeViewProvider<T, UIView>
     
     override func update(view: UIView, using widget: T) { }
 }
-
-internal class EmptyView: UIView { }

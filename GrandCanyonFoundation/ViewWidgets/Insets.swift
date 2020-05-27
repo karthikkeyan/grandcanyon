@@ -47,8 +47,9 @@ class InsetsViewProvider: TypeSafeViewProvider<Insets, UIView> {
         if let child = self.children?.first, let subview = controller?.viewForChildWidget(child, at: 0) {
             subview.translatesAutoresizingMaskIntoConstraints = false
             container.addSubview(subview)
-            self.childView = subview
-            self.constraints = container.addConstraintsTo(childView: subview)
+            subview.clipMargins(to: container)
+            
+            childView = subview
         }
         
         self.containerView = container
@@ -56,14 +57,6 @@ class InsetsViewProvider: TypeSafeViewProvider<Insets, UIView> {
     }
 
     override func update(view: UIView, using widget: Insets) {
-        guard let childView = self.childView,
-            let constraints = self.constraints,
-            let insets = controller?.widget.insets else {
-            return
-        }
-        
-        self.containerView?.directionalLayoutMargins = NSDirectionalEdgeInsets(insets: insets)
-        childView.addConstraints(constraints)
-        self.constraints = containerView?.addConstraintsTo(childView: childView)
+        self.containerView?.directionalLayoutMargins = NSDirectionalEdgeInsets(insets: widget.insets)
     }
 }

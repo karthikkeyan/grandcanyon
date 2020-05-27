@@ -32,8 +32,7 @@ public struct Stack: ViewWidget {
             self.children = [content]
         }
     }
-    
-    
+
     public func viewProvider(controller: ViewWidgetController<Stack>) -> TypeSafeViewProvider<Stack, UIStackView> {
         return StackViewProvider(controller: controller)
     }
@@ -66,7 +65,7 @@ class StackViewProvider: TypeSafeViewProvider<Stack, UIStackView> {
     override func update(view: UIStackView, using widget: Stack) { }
 }
 
-public func VerticalStack(distribution: UIStackView.Distribution = .fill,
+public func VStack(distribution: UIStackView.Distribution = .fill,
                           alignment: UIStackView.Alignment = .fill,
                           spacing: CGFloat = 0,
                           @WidgetBuilder body: () -> Widget) -> Stack {
@@ -77,7 +76,7 @@ public func VerticalStack(distribution: UIStackView.Distribution = .fill,
                  body: body)
 }
 
-public func HorizontalStack(distribution: UIStackView.Distribution = .fill,
+public func HStack(distribution: UIStackView.Distribution = .fill,
                             alignment: UIStackView.Alignment = .fill,
                             spacing: CGFloat = 0,
                             @WidgetBuilder body: () -> Widget) -> Stack {

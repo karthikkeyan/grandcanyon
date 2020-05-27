@@ -11,9 +11,21 @@ import UIKit
 // MARK: Table
 public struct Table: ViewWidget {
     @WidgetCollectionRef fileprivate var rows: [Widget]
+    @OptionalWidgetRef fileprivate var background: Widget? = nil
+    @OptionalWidgetRef fileprivate var header: Widget? = nil
+    @OptionalWidgetRef fileprivate var footer: Widget? = nil
+    
+    let contentInsets: UIEdgeInsets
 
-    public init(rows: [Widget]) {
-        self.rows = rows
+    public init(contentInsets: UIEdgeInsets = .zero, @WidgetBuilder rows: () -> Widget) {
+        self.contentInsets = contentInsets
+        
+        let content = rows()
+        if let tuple = content as? TupleWidget {
+            self.rows = tuple.widgets
+        } else {
+            self.rows = [content]
+        }
     }
     
     public func viewProvider(controller: ViewWidgetController<Table>) -> TypeSafeViewProvider<Table, UITableView> {
@@ -45,7 +57,22 @@ class TableViewProvider: TypeSafeViewProvider<Table, UITableView> {
         view.estimatedRowHeight = .quadrupleUnit
         view.rowHeight = UITableView.automaticDimension
         view.dataSource = coordinator
-        view.delegate = coordinator        
+        view.delegate = coordinator
+        view.contentInset = widget.contentInsets
+        view.backgroundColor = .clear
+        
+        if let background = controller?.widget.background {
+            view.backgroundView = controller?.viewForChildWidget(background, at: children?.count ?? Int.min)
+        }
+        
+        if let header = controller?.widget.header {
+            view.tableHeaderView = controller?.viewForChildWidget(header, at: children?.count ?? -1)
+        }
+        
+        if let footer = controller?.widget.footer {
+            view.tableFooterView = controller?.viewForChildWidget(footer, at: children?.count ?? -2)
+        }
+        
         return view
     }
 
@@ -101,6 +128,17 @@ private class TableViewCell: UITableViewCell {
         didSet { updateContentView() }
     }
     
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func updateContentView() {
         view?.removeFromSuperview()
         
@@ -108,6 +146,42 @@ private class TableViewCell: UITableViewCell {
         
         newView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(newView)
-        contentView.addConstraintsTo(childView: newView)
+        newView.clipEdges(to: contentView)
+    }
+}
+
+
+public extension Table {
+    func background(@WidgetBuilder body: () -> Widget) -> Table {
+        var table = self
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            table.background = tuple.widgets.first
+        } else {
+            table.background = content
+        }
+        return table
+    }
+    
+    func header(@WidgetBuilder body: () -> Widget) -> Table {
+        var table = self
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            table.header = tuple.widgets.first
+        } else {
+            table.header = content
+        }
+        return table
+    }
+    
+    func footer(@WidgetBuilder body: () -> Widget) -> Table {
+        var table = self
+        let content = body()
+        if let tuple = content as? TupleWidget {
+            table.footer = tuple.widgets.first
+        } else {
+            table.footer = content
+        }
+        return table
     }
 }

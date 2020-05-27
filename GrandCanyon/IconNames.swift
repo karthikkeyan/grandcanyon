@@ -10,4 +10,7 @@ import Foundation
 
 struct IconNames {
     static let unchecked = "icoUnchecked"
+    static let checked = "icoCheckCircle"
+    static let chevronRight = "icoChevronRight"
+    static let sitemap = "icoSitemap"
 }
