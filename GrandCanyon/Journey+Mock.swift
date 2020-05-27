@@ -19,7 +19,7 @@ extension JourneyDetails {
         let group2 = StepGroup(title: "Tips for New Managers",
                                subtitle: nil,
                                steps: [Step(title: "Public Speaking Tips", type: "Video - 6 minutes", isRequire: true, isCompleted: true),
-                                       Step(title: "How to Setup Manager Goals for Managers", type: "External Link", isRequire: false, isCompleted: false)])
+                                       Step(title: "How to Setup Manager Goals for Managers", type: "External Link — This is an important but optional resource you can do to help see what your goals will look like", isRequire: false, isCompleted: true)])
         
         return JourneyDetails(
             title: "Welcome to Journey Details",

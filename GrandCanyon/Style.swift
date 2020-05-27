@@ -46,4 +46,12 @@ extension UIColor {
     static var body: UIColor {
         UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
     }
+    
+    static var tableBackground: UIColor {
+        UIColor(red: 0.941, green: 0.945, blue: 0.949, alpha: 1)
+    }
+    
+    static var dismissableText: UIColor {
+        UIColor(red: 0.29, green: 0.333, blue: 0.38, alpha: 1)
+    }
 }
